@@ -5,13 +5,12 @@ def transform(df):
         logging.info("Starting data transformation")
 
         df = df.dropna()
-
         if df.empty:
-            raise ValueError("DataFrame is empty after removing NA values")
+            raise ValueError("Data empty after cleaning")
 
         result = df.groupby("city")["amount"].sum().reset_index()
+        logging.info("Transformation completed")
 
-        logging.info("Transformation completed successfully")
         return result
 
     except Exception as e:

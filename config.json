@@ -1,0 +1,5 @@
+{
+  "csv_path": "data/sales.csv",
+  "db_path": "sales.db",
+  "table_name": "city_sales"
+}

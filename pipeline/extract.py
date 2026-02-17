@@ -2,16 +2,15 @@ import pandas as pd
 import logging
 import os
 
-CSV_PATH = "data/sales.csv"
-
-def extract():
+def extract(config):
     try:
+        csv_path = config["csv_path"]
         logging.info("Starting data extraction")
 
-        if not os.path.exists(CSV_PATH):
-            raise FileNotFoundError(f"{CSV_PATH} not found")
+        if not os.path.exists(csv_path):
+            raise FileNotFoundError(f"{csv_path} not found")
 
-        df = pd.read_csv(CSV_PATH)
+        df = pd.read_csv(csv_path)
 
         if df.empty:
             raise ValueError("Extracted data is empty")

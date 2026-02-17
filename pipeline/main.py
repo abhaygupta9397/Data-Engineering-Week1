@@ -2,10 +2,8 @@ import logging
 from extract import extract
 from transform import transform
 from load import load
+from config import load_config
 
-# -------------------------
-# LOGGING CONFIG
-# -------------------------
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(message)s"
@@ -14,9 +12,11 @@ logging.basicConfig(
 def run_pipeline():
     logging.info("Pipeline started")
 
-    df = extract()
-    transformed_df = transform(df)
-    load(transformed_df)
+    config = load_config()
+
+    df = extract(config)
+    df = transform(df)
+    load(df, config)
 
     logging.info("Pipeline finished successfully")
 

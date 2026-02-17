@@ -1,15 +1,15 @@
 import sqlite3
 import logging
 
-DB_PATH = "sales.db"
-TABLE_NAME = "city_sales"
-
-def load(df):
+def load(df, config):
     try:
+        db_path = config["db_path"]
+        table = config["table_name"]
+
         logging.info("Starting data load")
 
-        conn = sqlite3.connect(DB_PATH)
-        df.to_sql(TABLE_NAME, conn, if_exists="replace", index=False)
+        conn = sqlite3.connect(db_path)
+        df.to_sql(table, conn, if_exists="replace", index=False)
         conn.close()
 
         logging.info("Data loaded successfully")
